@@ -58,7 +58,7 @@ check_node() {
     NODE_PATH_FOUND=$(command -v node)
     local major
     major=$(echo "$NODE_VERSION" | cut -d. -f1)
-    if [ "$major" -ge 20 ] 2>/dev/null; then
+    if node -e "const [major, minor, patch] = process.versions.node.split('.').map(Number); process.exit((major === 22 && (minor > 23 || minor === 23 && patch >= 4)) || (major === 24 && (minor > 22 || minor === 22 && patch >= 1)) || (major === 26 && (minor > 12 || minor === 12 && patch >= 1)) || major > 26 ? 0 : 1)" 2>/dev/null; then
       NODE_OK="true"
     fi
     log "Node $NODE_VERSION at $NODE_PATH_FOUND (major=$major, ok=$NODE_OK)"

@@ -10,7 +10,7 @@ set -euo pipefail
 
 echo "=== NANOCLAW SETUP: INSTALL_NODE ==="
 
-if command -v node >/dev/null 2>&1; then
+if command -v node >/dev/null 2>&1 && node -e "const [major, minor, patch] = process.versions.node.split('.').map(Number); process.exit((major === 22 && (minor > 23 || minor === 23 && patch >= 4)) || (major === 24 && (minor > 22 || minor === 22 && patch >= 1)) || (major === 26 && (minor > 12 || minor === 12 && patch >= 1)) || major > 26 ? 0 : 1)"; then
   echo "STATUS: already-installed"
   echo "NODE_VERSION: $(node --version)"
   echo "=== END ==="
@@ -52,9 +52,9 @@ else
   esac
 fi
 
-if ! command -v node >/dev/null 2>&1; then
+if ! command -v node >/dev/null 2>&1 || ! node -e "const [major, minor, patch] = process.versions.node.split('.').map(Number); process.exit((major === 22 && (minor > 23 || minor === 23 && patch >= 4)) || (major === 24 && (minor > 22 || minor === 22 && patch >= 1)) || (major === 26 && (minor > 12 || minor === 12 && patch >= 1)) || major > 26 ? 0 : 1)"; then
   echo "STATUS: failed"
-  echo "ERROR: node not found on PATH after install"
+  echo "ERROR: patched Node.js (22.23.4+, 24.22.1+, or 26.12.1+) not found on PATH after install"
   echo "=== END ==="
   exit 1
 fi
