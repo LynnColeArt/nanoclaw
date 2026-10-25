@@ -108,7 +108,7 @@ NanoClawは設定ファイルを使いません。変更したいときは、Cla
 ## 必要条件
 
 - macOSまたはLinux（WindowsはWSL2経由）
-- Node.js 20以上とpnpm 10以上（インストーラーが未インストールなら両方をインストールします）
+- Node.js 22.23.4+ (22.x) / 24.22.1+ (24.x) / 26.12.1+とpnpm 10以上（インストーラーが未インストールなら両方をインストールします）
 - [Docker Desktop](https://docker.com/products/docker-desktop)（macOS/Windows）または Docker Engine（Linux）
 - [Claude Code](https://claude.ai/download)（`/customize`、`/debug`、セットアップ時のエラー復旧、全ての`/add-<channel>`スキルで使用）
 
